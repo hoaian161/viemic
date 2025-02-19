@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:viemic/screens/home/home.dart';
 
 void main() {
     runApp(const App());
@@ -10,14 +12,14 @@ class App extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
-            title: 'VieMic',
+            title: "VieMic",
             theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
+                textTheme: GoogleFonts.nunitoTextTheme(),
             ),
-            home: Scaffold(
-                body: Text("Its work"),
-            ),
+            debugShowCheckedModeBanner: false,
+            home: Home(),
         );
     }
 }

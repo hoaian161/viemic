@@ -1,0 +1,4 @@
+double DEFAULT_SCREEN_PADDING = 26;
+double DEFAULT_PADDING = 16;
+double SMALL_PADDING = 10;
+double MICRO_PADDING = 5;
