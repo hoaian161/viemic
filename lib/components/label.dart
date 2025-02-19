@@ -29,7 +29,7 @@ Text WeightLabel(String text) {
         style: TextStyle(
             color: DEFAULT_TEXT_COLOR,
             fontSize: DEFAULT_TEXT_SIZE,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
         ),
     );
 }

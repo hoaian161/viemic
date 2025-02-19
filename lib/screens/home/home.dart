@@ -24,7 +24,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         child: Column(
                             children: [
                                 Header(),
-                                SizedBox(height: 30),
+                                SizedBox(height: 10),
                                 // Tabs(),
                                 Expanded(
                                     child: TabBarView(

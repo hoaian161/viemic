@@ -20,3 +20,20 @@ Widget DefaultThumbnail(String url) {
         ),
     );
 }
+
+Widget RoomThumbnail(String url) {
+    return Container(
+        width: ROOM_THUMBNAIL_SIZE + 10,
+        decoration: BoxDecoration(
+            color: FADED_BACKGROUND_COLOR,
+            borderRadius: BorderRadius.circular(50),
+        ),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.network(
+                url,
+                width: ROOM_THUMBNAIL_SIZE,
+            ),
+        ),
+    );
+}

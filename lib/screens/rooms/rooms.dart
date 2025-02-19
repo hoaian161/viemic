@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:viemic/screens/rooms/widgets/room.dart';
 
 import '../../apis/general.dart';
 import '../../utils/internal.dart';
@@ -26,7 +27,7 @@ class _RoomsState extends State<Rooms> {
         print(data["data"]["config"]["appID"]);
 
         for (var roomElm in data["data"]["rooms"]) {
-            newRooms.add(Text("Hi"));
+            newRooms.add(Room(room: roomElm));
         }
 
         setState(() {
