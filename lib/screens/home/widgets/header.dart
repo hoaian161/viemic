@@ -25,23 +25,7 @@ class _HeaderState extends State<Header> {
                     ]
                 ),
                 Spacer(),
-                Tabs()
-                // Spacer(),
-                // Container(
-                //     padding: EdgeInsets.all(SMALL_PADDING),
-                //     decoration: BoxDecoration(
-                //         color: FADED_BACKGROUND_COLOR,
-                //         borderRadius: BorderRadius.circular(50),
-                //     ),
-                //     child: Row(
-                //         children: [
-                //             DefaultAvatar("https://robohash.org/set_set3/bgset_bg1/Phong1"),
-                //             SizedBox(width: SMALL_PADDING),
-                //             DefaultLabel("hoaian"),
-                //             SizedBox(width: SMALL_PADDING),
-                //         ],
-                //     ),
-                // ),
+                Tabs(),
             ],
         );
     }

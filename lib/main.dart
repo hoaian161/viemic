@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:viemic/screens/home/home.dart';
+import 'package:viemic/screens/login/login.dart';
 
 void main() {
     runApp(const App());
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
                 textTheme: GoogleFonts.nunitoTextTheme(),
             ),
             debugShowCheckedModeBanner: false,
-            home: Home(),
+            home: Login(),
         );
     }
 }

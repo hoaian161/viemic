@@ -12,7 +12,7 @@ TabBar Tabs() {
         unselectedLabelColor: FADED_TEXT_COLOR,
         tabs: [
             Tab(text: "Đề xuất"),
-            Tab(text: "Quanh đây"),
+            // Tab(text: "Quanh đây"),
             Tab(text: "Hoạt động"),
         ],
     );

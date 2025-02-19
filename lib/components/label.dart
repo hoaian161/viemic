@@ -13,31 +13,11 @@ Text SubLabel(String text) {
     );
 }
 
-Text OBSSubLabel(String text) {
-    return Text(
-        text,
-        style: TextStyle(
-            color: OBS_DEFAULT_TEXT_COLOR,
-            fontSize: SUB_TEXT_SIZE,
-        ),
-    );
-}
-
 Text DefaultLabel(String text) {
     return Text(
         text,
         style: TextStyle(
             color: DEFAULT_TEXT_COLOR,
-            fontSize: DEFAULT_TEXT_SIZE,
-        ),
-    );
-}
-
-Text OBSDefaultLabel(String text) {
-    return Text(
-        text,
-        style: TextStyle(
-            color: OBS_DEFAULT_TEXT_COLOR,
             fontSize: DEFAULT_TEXT_SIZE,
         ),
     );
@@ -54,23 +34,23 @@ Text WeightLabel(String text) {
     );
 }
 
-Text OBSWeightLabel(String text) {
-    return Text(
-        text,
-        style: TextStyle(
-            color: OBS_DEFAULT_TEXT_COLOR,
-            fontSize: DEFAULT_TEXT_SIZE,
-            fontWeight: FontWeight.w600,
-        ),
-    );
-}
-
 Text StrongLabel(String text) {
     return Text(
         text,
         style: TextStyle(
             color: DEFAULT_TEXT_COLOR,
             fontSize: STRONG_TEXT_SIZE,
+            fontWeight: FontWeight.bold,
+        ),
+    );
+}
+
+Text BigLabel(String text) {
+    return Text(
+        text,
+        style: TextStyle(
+            color: OBS_DEFAULT_TEXT_COLOR,
+            fontSize: BIG_TEXT_SIZE,
             fontWeight: FontWeight.bold,
         ),
     );

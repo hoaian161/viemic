@@ -5,7 +5,7 @@ import 'package:viemic/screens/home/widgets/tabs.dart';
 import 'package:viemic/utils/color.dart';
 
 import '../../utils/space.dart';
-import '../scroller/scroller.dart';
+import '../rooms/rooms.dart';
 
 class Home extends StatefulWidget {
     @override
@@ -16,11 +16,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     @override
     Widget build(BuildContext context) {
         return DefaultTabController(
-            length: 3,
+            length: 2,
             child: Scaffold(
                 body: SafeArea(
                     child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
                         child: Column(
                             children: [
                                 Header(),
@@ -29,8 +29,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 Expanded(
                                     child: TabBarView(
                                         children: [
-                                            Scroller(),
-                                            Center(child: Text("-")),
+                                            Rooms(),
                                             Center(child: Text("-")),
                                         ],
                                     ),
