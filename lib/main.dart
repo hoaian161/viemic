@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:viemic/screens/home/home.dart';
 import 'package:viemic/screens/login/login.dart';
+import 'package:viemic/utils/theme.dart';
 
 void main() {
     runApp(const App());
@@ -14,11 +15,7 @@ class App extends StatelessWidget {
     Widget build(BuildContext context) {
         return MaterialApp(
             title: "VieMic",
-            theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                useMaterial3: true,
-                textTheme: GoogleFonts.nunitoTextTheme(),
-            ),
+            theme: DefaultTheme(),
             debugShowCheckedModeBanner: false,
             home: Login(),
         );

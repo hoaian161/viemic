@@ -68,6 +68,7 @@ class _LoginState extends State<Login> {
             Map<String, dynamic> user = authRequest["data"]["user"];
             await storage.set("user", jsonEncode(user));
             Internal().set("user", user);
+            Internal().set("isJoined", "");
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
         } else {
             modal(context, authRequest["message"], AnimationStyles.defaultStyle, 0.20);
@@ -123,7 +124,7 @@ class _LoginState extends State<Login> {
                                 signIn()
                             },
                             child: Container(
-                                width: 280,
+                                width: 260,
                                 height: 50,
                                 decoration: BoxDecoration(
                                     color: Colors.white,

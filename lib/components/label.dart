@@ -20,6 +20,8 @@ Text DefaultLabel(String text) {
             color: DEFAULT_TEXT_COLOR,
             fontSize: DEFAULT_TEXT_SIZE,
         ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
     );
 }
 
