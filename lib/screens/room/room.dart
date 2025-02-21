@@ -241,9 +241,9 @@ class _RoomState extends State<Room> {
                                                     child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                            SubLabel(_messages[index]["sender"]!),
+                                                            SubLabel(_messages[index]["sender"]!, FADED_1_COLOR),
                                                             SizedBox(height: 5),
-                                                            DefaultLabel(_messages[index]["text"]!),
+                                                            DefaultLabel(_messages[index]["text"]!, BLACK_COLOR),
                                                         ],
                                                     ),
                                                 ),
@@ -258,7 +258,7 @@ class _RoomState extends State<Room> {
                                                 child: Container(
                                                     padding: EdgeInsets.symmetric(horizontal: 16),
                                                     decoration: BoxDecoration(
-                                                        color: FADED_BACKGROUND_COLOR,
+                                                        color: FADED_2_COLOR,
                                                         borderRadius: BorderRadius.circular(20),
                                                     ),
                                                     child: Row(
@@ -269,12 +269,12 @@ class _RoomState extends State<Room> {
                                                                     decoration: InputDecoration(
                                                                         hintText: "Nhập tin nhắn...",
                                                                         hintStyle: TextStyle(
-                                                                            color: DEFAULT_TEXT_COLOR,
+                                                                            color: BLACK_COLOR,
                                                                         ),
                                                                         border: InputBorder.none,
                                                                     ),
                                                                     style: TextStyle(
-                                                                        color: DEFAULT_TEXT_COLOR,
+                                                                        color: BLACK_COLOR,
                                                                     ),
                                                                 ),
                                                             ),

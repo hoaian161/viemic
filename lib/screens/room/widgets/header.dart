@@ -27,8 +27,8 @@ class _HeaderState extends State<Header> {
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        StrongLabel("${widget.room["title"]}"),
-                        SubLabel("${widget.room["desc"]}"),
+                        StrongLabel("${widget.room["title"]}", WHITE_COLOR),
+                        SubLabel("${widget.room["desc"]}", FADED_1_COLOR),
                     ]
                 ),
                 Spacer(),

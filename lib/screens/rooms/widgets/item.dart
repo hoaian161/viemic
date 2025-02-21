@@ -50,13 +50,13 @@ class _ItemState extends State<Item> {
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                                WeightLabel(widget.room["title"]),
+                                WeightLabel(widget.room["title"], BLACK_COLOR),
                                 // SizedBox(height: MICRO_PADDING),
                                 Row(
                                     children: [
                                         Icon(Icons.multitrack_audio_outlined),
                                         SizedBox(width: MICRO_PADDING),
-                                        SubLabel(widget.room["desc"])
+                                        SubLabel(widget.room["desc"], FADED_1_COLOR)
                                     ],
                                 ),
                             ],
@@ -65,7 +65,7 @@ class _ItemState extends State<Item> {
                         BlueBadge(
                             Icon(
                                 Icons.people_alt_sharp,
-                                color: OBS_DEFAULT_TEXT_COLOR,
+                                color: WHITE_COLOR,
                             ),
                             "3",
                         )

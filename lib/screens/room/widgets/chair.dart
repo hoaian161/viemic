@@ -5,6 +5,7 @@ import 'package:viemic/components/label.dart';
 import 'package:viemic/utils/space.dart';
 
 import '../../../apis/general.dart';
+import '../../../utils/color.dart';
 import '../../../utils/size.dart';
 
 class Chair extends StatefulWidget {
@@ -54,7 +55,7 @@ class _ChairState extends State<Chair> {
                             user != null ? DefaultAvatar("${user?["avatar"]}") : const CircularProgressIndicator(),
                             Container(
                                 margin: EdgeInsets.only(top: DEFAULT_AVATAR_SIZE + 10),
-                                child: DefaultLabel("${user?["name"]}"),
+                                child: DefaultLabel("${user?["name"]}", BLACK_COLOR),
                             ),
                         ],
                     )

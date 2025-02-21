@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:viemic/screens/rooms/widgets/item.dart';
+import 'package:viemic/utils/space.dart';
 
 import '../../apis/general.dart';
 import '../../utils/internal.dart';
@@ -37,14 +38,17 @@ class _RoomsState extends State<Rooms> {
 
     @override
     Widget build(BuildContext context) {
-        return rooms.isEmpty
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-            padding: EdgeInsets.only(bottom: 16, top: 20),
-            itemCount: rooms.length,
-            itemBuilder: (context, index) {
-                return rooms[index];
-            },
+        return Padding(
+            padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
+            child: rooms.isEmpty
+                ? Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                padding: EdgeInsets.only(bottom: 16, top: 20),
+                itemCount: rooms.length,
+                itemBuilder: (context, index) {
+                    return rooms[index];
+                },
+            ),
         );
     }
 }

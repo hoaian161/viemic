@@ -9,6 +9,7 @@ import 'package:viemic/screens/login/widgets/background.dart';
 import '../../apis/general.dart';
 import '../../apis/google_login.dart';
 import '../../components/label.dart';
+import '../../utils/color.dart';
 import '../../utils/internal.dart';
 import '../../utils/modal.dart';
 import '../../utils/space.dart';
@@ -110,7 +111,7 @@ class _LoginState extends State<Login> {
                         left: 0,
                         right: 0,
                         child: Center(
-                            child: BigLabel("viemic"),
+                            child: BigLabel("viemic", WHITE_COLOR),
                         ),
                     ),
                     isFirstLogin ?
@@ -141,7 +142,7 @@ class _LoginState extends State<Login> {
                                             height: 35,
                                         ),
                                         SizedBox(width: 13),
-                                        DefaultLabel("Tiếp tục với Google"),
+                                        DefaultLabel("Tiếp tục với Google", BLACK_COLOR),
                                         Spacer()
                                     ],
                                 ),

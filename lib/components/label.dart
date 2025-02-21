@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:viemic/utils/color.dart';
 import 'package:viemic/utils/size.dart';
 
-Text SubLabel(String text) {
+Text SubLabel(String text, Color color) {
     return Text(
         text,
         style: TextStyle(
-            color: FADED_TEXT_COLOR,
+            color: color,
             fontSize: SUB_TEXT_SIZE,
         ),
     );
 }
 
-Text DefaultLabel(String text) {
+Text DefaultLabel(String text, Color color) {
     return Text(
         text,
         style: TextStyle(
-            color: DEFAULT_TEXT_COLOR,
+            color: color,
             fontSize: DEFAULT_TEXT_SIZE,
         ),
         maxLines: 1,
@@ -25,44 +25,44 @@ Text DefaultLabel(String text) {
     );
 }
 
-Text WeightLabel(String text) {
+Text WeightLabel(String text, Color color) {
     return Text(
         text,
         style: TextStyle(
-            color: DEFAULT_TEXT_COLOR,
+            color: color,
             fontSize: DEFAULT_TEXT_SIZE,
             fontWeight: FontWeight.w500,
         ),
     );
 }
 
-Text StrongLabel(String text) {
+Text StrongLabel(String text, Color color) {
     return Text(
         text,
         style: TextStyle(
-            color: DEFAULT_TEXT_COLOR,
+            color: color,
             fontSize: STRONG_TEXT_SIZE,
             fontWeight: FontWeight.bold,
         ),
     );
 }
 
-Text BigLabel(String text) {
+Text BigLabel(String text, Color color) {
     return Text(
         text,
         style: TextStyle(
-            color: OBS_DEFAULT_TEXT_COLOR,
+            color: color,
             fontSize: BIG_TEXT_SIZE,
             fontWeight: FontWeight.bold,
         ),
     );
 }
 
-Text HashtagLabel(String text) {
+Text HashtagLabel(String text, Color color) {
     return Text(
         text,
         style: TextStyle(
-            color: Colors.blueAccent,
+            color: color,
             fontSize: SUB_TEXT_SIZE,
             fontWeight: FontWeight.bold,
         ),

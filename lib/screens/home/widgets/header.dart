@@ -15,18 +15,24 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
     @override
     Widget build(BuildContext context) {
-        return Row(
-            children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                        SubLabel("Xin chào,"),
-                        StrongLabel("VieMic")
-                    ]
-                ),
-                Spacer(),
-                Tabs(),
-            ],
+        return Container(
+            padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
+            decoration: BoxDecoration(
+                color: BLUE_COLOR,
+            ),
+            child: Row(
+                children: [
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                            SubLabel("Xin chào,", FADED_1_COLOR),
+                            StrongLabel("VieMic", WHITE_COLOR)
+                        ]
+                    ),
+                    Spacer(),
+                    Tabs(),
+                ],
+            ),
         );
     }
 }

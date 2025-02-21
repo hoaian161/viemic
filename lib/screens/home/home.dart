@@ -19,23 +19,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             length: 2,
             child: Scaffold(
                 body: SafeArea(
-                    child: Padding(
-                        padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
-                        child: Column(
-                            children: [
-                                Header(),
-                                SizedBox(height: 10),
-                                // Tabs(),
-                                Expanded(
-                                    child: TabBarView(
-                                        children: [
-                                            Rooms(),
-                                            Center(child: Text("-")),
-                                        ],
-                                    ),
+                    child: Column(
+                        children: [
+                            Header(),
+                            SizedBox(height: 10),
+                            // Tabs(),
+                            Expanded(
+                                child: TabBarView(
+                                    children: [
+                                        Rooms(),
+                                        Center(child: Text("-")),
+                                    ],
                                 ),
-                            ],
-                        ),
+                            ),
+                        ],
                     ),
                 ),
             ),

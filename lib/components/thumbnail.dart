@@ -8,7 +8,7 @@ Widget DefaultThumbnail(String url) {
         padding: EdgeInsets.all(5),
         width: DEFAULT_THUMBNAIL_SIZE + 5,
         decoration: BoxDecoration(
-            color: FADED_BACKGROUND_COLOR,
+            color: FADED_2_COLOR,
             borderRadius: BorderRadius.circular(50)
         ),
         child: ClipRRect(
@@ -25,7 +25,7 @@ Widget RoomThumbnail(String url) {
     return Container(
         width: ROOM_THUMBNAIL_SIZE + 10,
         decoration: BoxDecoration(
-            color: FADED_BACKGROUND_COLOR,
+            color: FADED_2_COLOR,
             borderRadius: BorderRadius.circular(50),
         ),
         child: ClipRRect(

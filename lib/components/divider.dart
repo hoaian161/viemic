@@ -5,7 +5,7 @@ import '../utils/color.dart';
 
 Widget DefaultDivider() {
     return Divider(
-        color: FADED_BACKGROUND_COLOR,
+        color: FADED_2_COLOR,
         thickness: 1,
         indent: 10,
         endIndent: 10,

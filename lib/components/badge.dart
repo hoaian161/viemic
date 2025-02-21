@@ -7,7 +7,7 @@ Widget BlueBadge(Icon icon, String text) {
     return Container(
         padding: EdgeInsets.all(MICRO_PADDING),
         decoration: BoxDecoration(
-            color: BLUE_TEXT_COLOR,
+            color: BLUE_COLOR,
             borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
@@ -18,7 +18,7 @@ Widget BlueBadge(Icon icon, String text) {
                 Text(
                     text,
                     style: TextStyle(
-                        color: OBS_DEFAULT_TEXT_COLOR,
+                        color: WHITE_COLOR,
                     )
                 ),
                 SizedBox(width: MICRO_PADDING),

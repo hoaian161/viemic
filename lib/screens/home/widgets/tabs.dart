@@ -8,8 +8,8 @@ TabBar Tabs() {
         tabAlignment: TabAlignment.start,
         indicatorColor: Colors.transparent,
         dividerColor: Colors.transparent,
-        labelColor: DEFAULT_TEXT_COLOR,
-        unselectedLabelColor: FADED_TEXT_COLOR,
+        labelColor: BLACK_COLOR,
+        unselectedLabelColor: FADED_1_COLOR,
         tabs: [
             Tab(text: "Đề xuất"),
             // Tab(text: "Quanh đây"),
