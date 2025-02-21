@@ -209,7 +209,7 @@ class _RoomState extends State<Room> {
                         padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
                         child: Column(
                             children: [
-                                Header(room: widget.room),
+                                Header(room: widget.room, kickMessage: _kickMessage),
                                 SizedBox(height: 10),
                                 SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
@@ -254,6 +254,18 @@ class _RoomState extends State<Room> {
                                 Container(
                                     child: Row(
                                         children: [
+                                            InkWell(
+                                                splashColor: Colors.transparent,
+                                                highlightColor: Colors.transparent,
+                                                onTap: _toggleMuteMic,
+                                                child: Image.asset(
+                                                    _isMicMuted
+                                                        ? "assets/images/icons/mic_close.png"
+                                                        : "assets/images/icons/mic_open.png",
+                                                    width: 45,
+                                                ),
+                                            ),
+                                            SizedBox(width: 20),
                                             Expanded(
                                                 child: Container(
                                                     padding: EdgeInsets.symmetric(horizontal: 16),
@@ -290,18 +302,6 @@ class _RoomState extends State<Room> {
                                                             ),
                                                         ],
                                                     ),
-                                                ),
-                                            ),
-                                            SizedBox(width: 20),
-                                            InkWell(
-                                                splashColor: Colors.transparent,
-                                                highlightColor: Colors.transparent,
-                                                onTap: _toggleMuteMic,
-                                                child: Image.asset(
-                                                    _isMicMuted
-                                                        ? "assets/images/icons/mic_close.png"
-                                                        : "assets/images/icons/mic_open.png",
-                                                    width: 50,
                                                 ),
                                             ),
                                         ],

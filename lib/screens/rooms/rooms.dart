@@ -39,7 +39,7 @@ class _RoomsState extends State<Rooms> {
     @override
     Widget build(BuildContext context) {
         return Padding(
-            padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
+            padding: EdgeInsets.symmetric(horizontal: DEFAULT_SCREEN_PADDING),
             child: rooms.isEmpty
                 ? Center(child: CircularProgressIndicator())
                 : ListView.builder(

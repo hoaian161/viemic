@@ -8,12 +8,22 @@ TabBar Tabs() {
         tabAlignment: TabAlignment.start,
         indicatorColor: Colors.transparent,
         dividerColor: Colors.transparent,
-        labelColor: BLACK_COLOR,
+        labelColor: BLUE_COLOR,
         unselectedLabelColor: FADED_1_COLOR,
         tabs: [
-            Tab(text: "Đề xuất"),
+            Tab(
+                icon: Icon(
+                    Icons.multitrack_audio,
+                    size: 40,
+                ),
+            ),
             // Tab(text: "Quanh đây"),
-            Tab(text: "Hoạt động"),
+            Tab(
+                icon: Icon(
+                    Icons.connect_without_contact,
+                    size: 40,
+                ),
+            ),
         ],
     );
 }

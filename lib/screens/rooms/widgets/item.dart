@@ -6,6 +6,8 @@ import 'package:viemic/utils/space.dart';
 import '../../../components/badge.dart';
 import '../../../components/label.dart';
 import '../../../components/thumbnail.dart';
+import '../../../utils/internal.dart';
+import '../../../utils/modal.dart';
 import '../../room/room.dart';
 
 class Item extends StatefulWidget {
@@ -32,14 +34,20 @@ class _ItemState extends State<Item> {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Room(
-                            room: widget.room
+                if (Internal().get("isJoined") == "") {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Room(
+                                room: widget.room
+                            ),
                         ),
-                    ),
-                );
+                    );
+                } else if (Internal().get("isJoined") == widget.room["id"]) {
+                    Navigator.pop(context);
+                } else {
+                    modal(context, "Bạn cần rời khỏi phòng hiện tại trước khi tham gia phòng khác", AnimationStyles.defaultStyle, 0.20);
+                }
             },
             child: Container(
                 margin: EdgeInsets.symmetric(vertical: DEFAULT_PADDING),
@@ -67,7 +75,7 @@ class _ItemState extends State<Item> {
                                 Icons.people_alt_sharp,
                                 color: WHITE_COLOR,
                             ),
-                            "3",
+                            "0",
                         )
                     ],
                 ),

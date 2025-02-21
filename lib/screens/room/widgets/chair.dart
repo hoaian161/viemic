@@ -44,18 +44,39 @@ class _ChairState extends State<Chair> {
     @override
     Widget build(BuildContext context) {
         return Container(
-            width: DEFAULT_AVATAR_SIZE + 20,
+            width: DEFAULT_AVATAR_SIZE + 40,
             margin: EdgeInsets.symmetric(horizontal: DEFAULT_PADDING),
+            decoration: BoxDecoration(
+                // color: Colors.red
+            ),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                     Stack(
                         alignment: Alignment.topCenter,
                         children: [
-                            user != null ? DefaultAvatar("${user?["avatar"]}") : const CircularProgressIndicator(),
+                            user != null
+                                ? DefaultAvatar("${user?["avatar"]}")
+                                : const CircularProgressIndicator(),
                             Container(
                                 margin: EdgeInsets.only(top: DEFAULT_AVATAR_SIZE + 10),
-                                child: DefaultLabel("${user?["name"]}", BLACK_COLOR),
+                                child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                        Flexible(
+                                            child: DefaultLabel("${user?["name"]}", BLACK_COLOR),
+                                        ),
+                                        SizedBox(width: MICRO_PADDING),
+                                        user?["badge"] != ""
+                                            ? Image.asset(
+                                                "assets/images/badges/${user?["badge"]}.png",
+                                                width: 18
+                                                )
+                                            : SizedBox()
+                                    ],
+                                ),
                             ),
                         ],
                     )
