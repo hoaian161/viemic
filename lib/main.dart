@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:viemic/screens/home/home.dart';
 import 'package:viemic/screens/login/login.dart';
 import 'package:viemic/utils/theme.dart';
 

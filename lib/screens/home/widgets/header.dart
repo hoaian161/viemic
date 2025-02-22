@@ -1,11 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:viemic/screens/home/widgets/tabs.dart';
-import 'package:viemic/utils/color.dart';
-import 'package:viemic/utils/space.dart';
-
-import '../../../components/avatar.dart';
-import '../../../components/label.dart';
 
 class Header extends StatefulWidget {
     @override
@@ -15,97 +9,31 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
     @override
     Widget build(BuildContext context) {
-        return Column(
+        return Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                        SizedBox(height: 10),
-                        SubLabel("Xin chào,", FADED_1_COLOR),
-                        StrongLabel("VieMic", BLACK_COLOR),
-                        SizedBox(height: 20),
-                    ],
+                CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage("https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/480985487_1170147727959645_1694118446548528336_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Www5zgwDV2cQ7kNvgHAErGM&_nc_oc=AdgVn_WD74seP6qJbtO-z1-FdsaUAOLq9kgRIlEgNSZLpFVsEwFXFWhEhqMm-plCP2s&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=AsXp0_qanbd4tLQt7MCxWq-&oh=00_AYDlqaP_VUCQEULwaQekU6Gudpz9nDAODDZpcpttb2exGw&oe=67BFF3E4"),
                 ),
-                Container(
-                    padding: EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                                BLUE_COLOR,
-                                WHITE_COLOR,
-                            ],
+                SizedBox(width: 16),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        Text(
+                            "Chào cậu,",
+                            style: TextStyle(color: Colors.grey),
                         ),
-                    ),
-                    child: Row(
-                        children: [
-                            Spacer(),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                    SubLabel("Rất vui khi được gặp bạn", FADED_3_COLOR),
-                                    WeightLabel("- Tahu -", WHITE_COLOR),
-                                ],
+                        Text(
+                            "hoaiandev",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(width: DEFAULT_PADDING),
-                            Image.asset(
-                                "assets/icons/square.png",
-                                width: 80,
-                            ),
-                        ],
-                    )
+                        ),
+                    ],
                 ),
             ],
         );
-        // return Container(
-        //     padding: EdgeInsets.all(DEFAULT_SCREEN_PADDING),
-        //     decoration: BoxDecoration(
-        //         // gradient: LinearGradient(
-        //         //     begin: Alignment.topCenter,
-        //         //     end: Alignment.bottomCenter,
-        //         //     colors: [
-        //         //         // BLUE_COLOR,
-        //         //         Color.fromRGBO(9, 95, 232, 1),
-        //         //         Color.fromRGBO(9, 95, 232, 0.7),
-        //         //         WHITE_COLOR
-        //         //     ],
-        //         // ),
-        //         color: BLUE_COLOR,
-        //         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40)),
-        //     ),
-        //     child: Row(
-        //         children: [
-        //             Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.start,
-        //                 children: [
-        //                     SubLabel("Xin chào,", FADED_3_COLOR),
-        //                     StrongLabel("VieMic", WHITE_COLOR)
-        //                 ]
-        //             ),
-        //             Spacer(),
-        //             Container(
-        //                 decoration: BoxDecoration(
-        //                     color: Colors.blueAccent[400],
-        //                     borderRadius: BorderRadius.circular(50),
-        //                 ),
-        //                 child: Row(
-        //                     children: [
-        //                         ClipRRect(
-        //                             child: Image.asset(
-        //                                 "assets/icons/head.png",
-        //                                 width: 50
-        //                             ),
-        //                         ),
-        //                         SizedBox(width: MICRO_PADDING),
-        //                         DefaultLabel("hoaian", WHITE_COLOR),
-        //                         SizedBox(width: DEFAULT_PADDING),
-        //                     ],
-        //                 ),
-        //             )
-        //             // Tabs(),
-        //         ],
-        //     ),
-        // );
     }
 }

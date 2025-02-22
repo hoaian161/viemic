@@ -1,67 +1,49 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:viemic/components/label.dart';
+import 'package:viemic/screens/home/widgets/infomation.dart';
+import 'package:viemic/screens/home/widgets/features.dart';
 import 'package:viemic/screens/home/widgets/header.dart';
-import 'package:viemic/screens/home/widgets/tabs.dart';
-import 'package:viemic/utils/color.dart';
+import 'package:viemic/screens/home/widgets/news.dart';
+import 'package:viemic/screens/home/widgets/rooms.dart';
 
-import '../../utils/space.dart';
-import '../rooms/rooms.dart';
+import '../../utils/theme.dart';
 
 class Home extends StatefulWidget {
     @override
     State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-    @override
+class _HomeState extends State<Home> {
     Widget build(BuildContext context) {
-        return DefaultTabController(
-            length: 2,
-            child: Scaffold(
-                appBar: AppBar(
-                    toolbarHeight: 0,
-                    // backgroundColor: BLUE_COLOR,
-                ),
+        return MaterialApp(
+            theme: DefaultTheme(),
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+                backgroundColor: Colors.white,
                 body: SafeArea(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                            Header(),
-                            SizedBox(height: 20),
-                            Padding(
-                                padding: EdgeInsets.symmetric(horizontal: DEFAULT_SCREEN_PADDING),
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                        StrongLabel("Rooms", BLACK_COLOR),
-                                        SubLabel("Tham gia phòng trò chuyện", FADED_1_COLOR),
-                                    ],
-                                ),
-                            ),
-                            // Tabs(),
-                            Expanded(
-                                child: TabBarView(
-                                    children: [
-                                        Rooms(),
-                                        Center(child: Text("-")),
-                                    ],
-                                ),
-                            ),
-                        ],
+                    child: Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                                Header(),
+                                SizedBox(height: 16),
+                                Infomation(),
+                                SizedBox(height: 16),
+                                News(),
+                                SizedBox(height: 30),
+                                Features(),
+                                SizedBox(height: 5),
+                                Rooms(),
+                            ],
+                        ),
                     ),
                 ),
-                // bottomNavigationBar: Container(
-                //     height: 100,
-                //     child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         children: [
-                //             Text("ABC"),
-                //             Text("ABC"),
-                //         ],
-                //     ),
-                // )
             ),
         );
     }
