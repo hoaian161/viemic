@@ -15,33 +15,29 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
     Widget build(BuildContext context) {
-        return MaterialApp(
-            theme: DefaultTheme(),
-            debugShowCheckedModeBanner: false,
-            home: Scaffold(
-                backgroundColor: Colors.white,
-                body: SafeArea(
-                    child: Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                                Header(),
-                                SizedBox(height: 16),
-                                Infomation(),
-                                SizedBox(height: 16),
-                                News(),
-                                SizedBox(height: 30),
-                                Features(),
-                                SizedBox(height: 5),
-                                Rooms(),
-                            ],
-                        ),
+        return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+                child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                            Header(),
+                            SizedBox(height: 16),
+                            Infomation(),
+                            SizedBox(height: 16),
+                            News(),
+                            SizedBox(height: 30),
+                            Features(),
+                            SizedBox(height: 5),
+                            Rooms(),
+                        ],
                     ),
                 ),
             ),

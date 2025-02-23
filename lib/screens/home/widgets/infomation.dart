@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:viemic/utils/color.dart';
 
+import '../../../utils/internal.dart';
+
+Map<String, dynamic> user = Internal().get("user");
+
 class Infomation extends StatefulWidget {
     @override
     State<Infomation> createState() => _CurrencyState();
@@ -12,7 +16,7 @@ class _CurrencyState extends State<Infomation> {
         return Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-                color: selected ? ORANGE_COLOR : Colors.transparent,
+                color: selected ? BLUE_COLOR : Colors.transparent,
                 borderRadius: BorderRadius.circular(16),
             ),
             child: Text(
@@ -31,7 +35,7 @@ class _CurrencyState extends State<Infomation> {
                     children: [
                         _infomationButton("0 xu", true),
                         SizedBox(width: 8),
-                        _infomationButton("ID: 1", false),
+                        _infomationButton("ID: ${user["id"]}", false),
                     ],
                 ),
                 Text(

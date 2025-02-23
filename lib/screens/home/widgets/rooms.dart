@@ -41,17 +41,15 @@ class _RoomsState extends State<Rooms> {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
-                if (Internal().get("isJoined") == "") {
-                    Navigator.push(
+                if (Internal().get("isJoined") == room["id"]) {
+                    Navigator.pop(context);
+                } else if (Internal().get("isJoined") == "") {
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Room(
-                                room: room
-                            ),
+                            builder: (context) => Room(room: room),
                         ),
                     );
-                } else if (Internal().get("isJoined") == room["id"]) {
-                    Navigator.pop(context);
                 } else {
                     modal(context, "Bạn cần rời khỏi phòng hiện tại trước khi tham gia phòng khác", AnimationStyles.defaultStyle, 0.20);
                 }
