@@ -16,12 +16,12 @@ class _CurrencyState extends State<Infomation> {
         return Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-                color: selected ? BLUE_COLOR : Colors.transparent,
+                color: selected ? FADED_2_COLOR : Colors.transparent,
                 borderRadius: BorderRadius.circular(16),
             ),
             child: Text(
                 label,
-                style: TextStyle(color: selected ? Colors.white : Colors.grey),
+                style: TextStyle(color: Colors.grey),
             ),
         );
     }

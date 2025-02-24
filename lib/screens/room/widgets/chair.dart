@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:viemic/components/avatar.dart';
-import 'package:viemic/components/label.dart';
 import 'package:viemic/utils/space.dart';
 
 import '../../../apis/general.dart';
-import '../../../utils/color.dart';
-import '../../../utils/size.dart';
 
 class Chair extends StatefulWidget {
     final int uid;
@@ -21,22 +17,32 @@ class Chair extends StatefulWidget {
 }
 
 class _ChairState extends State<Chair> {
+    static final Map<int, Map<String, dynamic>> _userCache = {};
+
     Map<String, dynamic>? user;
 
     @override
     void initState() {
         super.initState();
-        userInfo();
+        if (_userCache.containsKey(widget.uid)) {
+            setState(() {
+                user = _userCache[widget.uid];
+            });
+        } else {
+            userInfo();
+        }
     }
 
     Future<void> userInfo() async {
         try {
             var userData = await server("getUserInfo", "userID=${widget.uid}");
-            setState(() {
-                user = userData["data"]["info"];
-            });
+            if (userData["data"]?["info"] != null) {
+                _userCache[widget.uid] = userData["data"]["info"];
+                setState(() {
+                    user = _userCache[widget.uid];
+                });
+            }
         } catch (e) {
-            // Handle error
             print("Failed to load user data: $e");
         }
     }
@@ -68,10 +74,11 @@ class _ChairState extends State<Chair> {
                                 ),
                             ),
                             SizedBox(width: MICRO_PADDING),
-                            if(user?["badge"] != "" && user?["badge"] != null) Image.asset(
-                                "assets/images/badges/${user?["badge"]}.png",
-                                width: 15
-                            ),
+                            if (user?["badge"] != "" && user?["badge"] != null)
+                                Image.asset(
+                                    "assets/images/badges/${user?["badge"]}.png",
+                                    width: 15
+                                ),
                         ],
                     )
                 ],

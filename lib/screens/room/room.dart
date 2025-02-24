@@ -31,7 +31,7 @@ class Room extends StatefulWidget {
 }
 
 class _RoomState extends State<Room> {
-    final List<int> _users = [];
+    final Set<int> _users = {};
     RtcEngine? _engine;
     late IO.Socket socket;
     bool _isMicMuted = true;
@@ -134,18 +134,22 @@ class _RoomState extends State<Room> {
                         _users.add(uid);
                     });
                 },
+
                 onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
                     debugPrint("Remote user $remoteUid joined");
                     setState(() {
                         _users.add(remoteUid);
                     });
                 },
+
                 onUserOffline: (RtcConnection connection, int remoteUid, UserOfflineReasonType reason) {
                     debugPrint("Remote user $remoteUid left");
                     setState(() {
                         _users.remove(remoteUid);
+                        print(_users);
                     });
                 },
+
                 onError: (ErrorCodeType code, String message) async {
                     debugPrint("Error: $code - $message");
                     await _kickMessage("Phòng này đã bị xoá");
@@ -189,17 +193,6 @@ class _RoomState extends State<Room> {
         }
     }
 
-    @override
-    void didChangeAppLifecycleState(AppLifecycleState state) {
-        if (state == AppLifecycleState.paused) {
-            print("App is in background, keeping current state...");
-            // Do NOT push Home. Let the OS handle the app switcher view.
-        } else if (state == AppLifecycleState.resumed) {
-            print("App resumed, no need to navigate manually.");
-            // No need to push Room again, Flutter will resume it automatically.
-        }
-    }
-
     Future<void> _toggleMuteMic() async {
         if (_engine != null) {
             setState(() {
@@ -228,9 +221,7 @@ class _RoomState extends State<Room> {
                                         padding: EdgeInsets.only(bottom: 16, top: 20),
                                         child: Row(
                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: _users.map((userid) {
-                                                return Chair(uid: userid);
-                                            }).toList(),
+                                            children: _users.map((userID) => Chair(uid: userID, key: ValueKey(userID))).toList(),
                                         ),
                                     ),
                                 ],
