@@ -121,41 +121,42 @@ class _LoginState extends State<Login> {
                             child: BigLabel("viemic", WHITE_COLOR),
                         ),
                     ),
-                    Positioned(
-                        top: MediaQuery.of(context).size.height * 0.90,
-                        right: 16,
-                        child: InkWell(
-                            // splashColor: Colors.transparent,
-                            // highlightColor: Colors.transparent,
-                            onTap: () => {
-                                if (isFirstLogin)
-                                    signIn()
-                            },
-                            child: Container(
-                                width: 260,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(40),
+                    if (isFirstLogin)
+                        Positioned(
+                            top: MediaQuery.of(context).size.height * 0.90,
+                            right: 16,
+                            child: InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () => {
+                                    if (isFirstLogin)
+                                        signIn()
+                                },
+                                child: Container(
+                                    width: 260,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(40),
+                                    ),
+                                    child: Row(
+                                        // crossAxisAlignment: CrossAxisAlignment.start,
+                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                            SizedBox(width: 10),
+                                            Image.asset(
+                                                "assets/images/icons/google.png",
+                                                width: 35,
+                                                height: 35,
+                                            ),
+                                            SizedBox(width: 13),
+                                            DefaultLabel("Tiếp tục với Google", BLACK_COLOR),
+                                            Spacer(),
+                                        ],
+                                    ),
                                 ),
-                                child: Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                        SizedBox(width: 10),
-                                        Image.asset(
-                                            "assets/images/icons/google.png",
-                                            width: 35,
-                                            height: 35,
-                                        ),
-                                        SizedBox(width: 13),
-                                        DefaultLabel(isFirstLogin ? "Tiếp tục với Google" : "Đang đăng nhập ...", BLACK_COLOR),
-                                        Spacer()
-                                    ],
-                                ),
-                            )
-                        )
-                    )
+                            ),
+                        ),
                 ],
             ),
         );

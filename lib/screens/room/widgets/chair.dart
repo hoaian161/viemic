@@ -4,6 +4,7 @@ import 'package:viemic/utils/color.dart';
 import 'package:viemic/utils/space.dart';
 
 import '../../../apis/general.dart';
+import '../../../utils/user_popup.dart';
 
 class Chair extends StatefulWidget {
     final int uid;
@@ -71,11 +72,18 @@ class _ChairState extends State<Chair> {
                                         color: BLUE_COLOR.withOpacity(0.2 - (i * 0.05)),
                                     ),
                                 ),
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: user?.containsKey("avatar") ?? false
-                                    ? Image.network(user!["avatar"], width: 50)
-                                    : Icon(Icons.person, size: 24),
+                            InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () {
+                                    userPopup(context, user);
+                                },
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: user?.containsKey("avatar") ?? false
+                                        ? Image.network(user!["avatar"], width: 50)
+                                        : Icon(Icons.person, size: 24),
+                                ),
                             ),
                             if (widget.userObj["isMute"] == true)
                                 ClipRRect(
@@ -89,7 +97,7 @@ class _ChairState extends State<Chair> {
                                 ),
                         ],
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: SMALL_PADDING),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
