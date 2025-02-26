@@ -11,11 +11,11 @@ class _FeaturesState extends State<Features> {
         return Column(
             children: [
                 CircleAvatar(
-                    backgroundColor: Colors.blue[100],
-                    radius: 24,
+                    backgroundColor: Colors.white,
+                    radius: 30,
                     child: Image.asset(icon),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 3),
                 Text(
                     label,
                     style: TextStyle(fontSize: 14)
@@ -30,15 +30,15 @@ class _FeaturesState extends State<Features> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
                 _featureButton(
-                    "assets/images/other/add_friend.png",
-                    "Thêm bạn"
+                    "assets/images/icons/distance.png",
+                    "Gần đây"
                 ),
                 _featureButton(
-                    "assets/images/other/friends.png",
+                    "assets/images/icons/friends.png",
                     "Bạn bè"
                 ),
                 _featureButton(
-                    "assets/images/other/edit.png",
+                    "assets/images/icons/edit.png",
                     "Hồ sơ"
                 ),
             ],

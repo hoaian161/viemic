@@ -13,6 +13,7 @@ import '../../components/label.dart';
 import '../../utils/color.dart';
 import '../../utils/internal.dart';
 import '../../utils/modal.dart';
+import '../../utils/size.dart';
 import '../../utils/space.dart';
 import '../../utils/storage.dart';
 import '../home/home.dart';
@@ -112,20 +113,39 @@ class _LoginState extends State<Login> {
         return Scaffold(
             body: Stack(
                 children: [
-                    // Background(),
-                    Positioned(
-                        top: MediaQuery.of(context).size.height * 0.17,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                            child: BigLabel("viemic", WHITE_COLOR),
+                    Container(
+                        height: MediaQuery.of(context).size.height,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
                         ),
                     ),
-                    if (isFirstLogin)
-                        Positioned(
-                            top: MediaQuery.of(context).size.height * 0.90,
-                            right: 16,
-                            child: InkWell(
+                    Background(),
+                    Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.18),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                Image.asset(
+                                    "assets/icons/trans.png",
+                                    width: 90,
+                                ),
+                                SizedBox(width: SMALL_PADDING),
+                                Text(
+                                    "viemic",
+                                    style: TextStyle(
+                                        color: BLACK_COLOR,
+                                        fontSize: BIG_TEXT_SIZE,
+                                        fontWeight: FontWeight.bold,
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.85, right: 50, left: 50),
+                        child: isFirstLogin
+                            ? InkWell(
                                 splashColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () => {
@@ -133,30 +153,36 @@ class _LoginState extends State<Login> {
                                         signIn()
                                 },
                                 child: Container(
-                                    width: 260,
                                     height: 50,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(40),
                                     ),
                                     child: Row(
-                                        // crossAxisAlignment: CrossAxisAlignment.start,
-                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                            SizedBox(width: 10),
+                                            Spacer(),
                                             Image.asset(
                                                 "assets/images/icons/google.png",
                                                 width: 35,
                                                 height: 35,
                                             ),
-                                            SizedBox(width: 13),
-                                            DefaultLabel("Tiếp tục với Google", BLACK_COLOR),
+                                            SizedBox(width: DEFAULT_PADDING),
+                                            Text(
+                                                "Đăng nhập với Google",
+                                                style: TextStyle(
+                                                    color: BLACK_COLOR,
+                                                    fontSize: DEFAULT_TEXT_SIZE,
+                                                ),
+                                            ),
                                             Spacer(),
                                         ],
                                     ),
                                 ),
-                            ),
-                        ),
+                            )
+                            : CircularProgressIndicator(),
+                    ),
                 ],
             ),
         );

@@ -68,8 +68,8 @@ class _HeaderState extends State<Header> {
                         widget.kickMessage("Bạn đã rời phòng");
                     },
                     child: Image.asset(
-                        "assets/images/icons/quit.png",
-                        width: 35,
+                        "assets/images/icons/exit.png",
+                        width: 40,
                     ),
                 ),
             ],

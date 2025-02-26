@@ -81,7 +81,7 @@ class _RoomsState extends State<Rooms> {
                                             room["desc"],
                                             style: TextStyle(
                                                 color: Colors.grey,
-                                                fontSize: 12,
+                                                fontSize: 14,
                                             ),
                                         ),
                                     ],
@@ -91,24 +91,23 @@ class _RoomsState extends State<Rooms> {
                         Container(
                             padding: EdgeInsets.all(MICRO_PADDING),
                             decoration: BoxDecoration(
-                                color: BLUE_COLOR,
+                                color: FADED_2_COLOR,
                                 borderRadius: BorderRadius.circular(20),
                             ),
                             child: Row(
                                 children: [
-                                    SizedBox(width: MICRO_PADDING),
-                                    Icon(
-                                        Icons.people_alt_sharp,
-                                        color: Colors.white
+                                    Image.asset(
+                                        "assets/images/icons/signal.png",
+                                        width: 30,
                                     ),
                                     SizedBox(width: MICRO_PADDING),
                                     Text(
                                         "0",
                                         style: TextStyle(
-                                            color: WHITE_COLOR,
+                                            color: FADED_1_COLOR,
                                         )
                                     ),
-                                    SizedBox(width: MICRO_PADDING),
+                                    SizedBox(width: SMALL_PADDING),
                                 ],
                             ),
                         ),
@@ -124,18 +123,6 @@ class _RoomsState extends State<Rooms> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                 SizedBox(height: 20),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                        Text(
-                            "Phòng có sẵn",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                            ),
-                        ),
-                    ],
-                ),
                 rooms.isEmpty
                     ? Center(child: CircularProgressIndicator())
                     : SizedBox(

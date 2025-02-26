@@ -12,6 +12,20 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
+    Widget _infomationButton(String label, bool selected) {
+        return Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+                color: selected ? FADED_2_COLOR : Colors.transparent,
+                borderRadius: BorderRadius.circular(16),
+            ),
+            child: Text(
+                label,
+                style: TextStyle(color: Colors.grey),
+            ),
+        );
+    }
+
     @override
     Widget build(BuildContext context) {
         return Row(
@@ -39,6 +53,10 @@ class _HeaderState extends State<Header> {
                         ),
                     ],
                 ),
+                Spacer(),
+                _infomationButton("ID ${user["id"]}", false),
+                SizedBox(width: 8),
+                _infomationButton("${user["coin"]} xu", true),
             ],
         );
     }

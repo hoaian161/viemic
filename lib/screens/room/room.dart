@@ -373,7 +373,7 @@ class _RoomState extends State<Room> {
                                                         highlightColor: Colors.transparent,
                                                         onTap: _sendMessage,
                                                         child: Image.asset(
-                                                            "assets/images/icons/edit.png",
+                                                            "assets/images/icons/send.png",
                                                             width: 20,
                                                         ),
                                                     ),

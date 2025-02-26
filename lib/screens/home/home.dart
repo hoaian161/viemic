@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
                         children: [
                             Header(),
                             SizedBox(height: 16),
-                            Infomation(),
+                            // Infomation(),
                             SizedBox(height: 16),
                             News(),
                             SizedBox(height: 30),
