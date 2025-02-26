@@ -78,6 +78,13 @@ class _RoomState extends State<Room> {
             }
         });
 
+        socket.onReconnect((_) {
+            setState(() {
+                _isChatable = true;
+            });
+            print("Reconnected Rooms server");
+        });
+
         socket.onDisconnect((_) {
             setState(() {
                 _isChatable = false;
@@ -170,6 +177,7 @@ class _RoomState extends State<Room> {
                     debugPrint("Remote user $remoteUid mute change");
                     setState(() {
                         _users[remoteUid]!["isMute"] = muted;
+                        _users[remoteUid]!["volume"] = 0;
                     });
                 },
 
@@ -296,9 +304,20 @@ class _RoomState extends State<Room> {
                                             child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                    SubLabel(_messages[index]["sender"]!, FADED_1_COLOR),
-                                                    SizedBox(height: 3),
-                                                    DefaultLabel(_messages[index]["text"]!, BLACK_COLOR),
+                                                    Text(
+                                                        _messages[index]["sender"]!,
+                                                        style: TextStyle(
+                                                            color: FADED_1_COLOR,
+                                                            fontSize: 14,
+                                                        ),
+                                                    ),
+                                                    Text(
+                                                        _messages[index]["text"]!,
+                                                        style: TextStyle(
+                                                            color: BLACK_COLOR,
+                                                            fontSize: 16,
+                                                        ),
+                                                    ),
                                                 ],
                                             ),
                                         ),

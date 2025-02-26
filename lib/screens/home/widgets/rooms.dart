@@ -141,7 +141,7 @@ class _RoomsState extends State<Rooms> {
                     : SizedBox(
                     height: 400,
                     child: ListView.builder(
-                        padding: EdgeInsets.only(bottom: 16, top: 16),
+                        padding: EdgeInsets.only(bottom: 100, top: 16),
                         itemCount: rooms.length,
                         itemBuilder: (context, index) {
                             return rooms[index];

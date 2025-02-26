@@ -4,6 +4,12 @@ import 'package:viemic/screens/login/login.dart';
 import 'package:viemic/utils/theme.dart';
 
 void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+    FlutterError.onError = (FlutterErrorDetails details) {
+        if (!details.toString().contains('overflow')) {
+            FlutterError.presentError(details);
+        }
+    };
     runApp(const App());
 }
 

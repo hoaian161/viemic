@@ -2,10 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Ứng dụng cần quyền truy cập micro</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Ứng dụng cần quyền truy cập camera</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+
+    <key>GIDClientID</key>
+    <string>560670711561-jpfsgulpu6tn4vfon3i2u3cj3arub456.apps.googleusercontent.com</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to provide better services.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location even when the app is running in the background.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Viemic</string>
+	<string>VieMic</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -45,9 +61,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need your location to provide better services.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>We need your location even when the app is running in the background.</string>
+	<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.560670711561-jpfsgulpu6tn4vfon3i2u3cj3arub456</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>

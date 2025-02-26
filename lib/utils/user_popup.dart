@@ -63,13 +63,14 @@ void userPopup(BuildContext context, Map<String, dynamic>? targetUser) {
                                                         ),
                                                 ],
                                             ),
-                                            Text(
-                                                "Quản trị viên",
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: FADED_1_COLOR,
-                                                ),
-                                            )
+                                            if (targetUser["role"] != "" && targetUser["role"] != null)
+                                                Text(
+                                                    "${targetUser["role"]}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: FADED_1_COLOR,
+                                                    ),
+                                                )
                                         ],
                                     ),
                                     Spacer(),
