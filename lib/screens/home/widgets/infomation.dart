@@ -33,7 +33,7 @@ class _CurrencyState extends State<Infomation> {
             children: [
                 Row(
                     children: [
-                        _infomationButton("0 xu", true),
+                        _infomationButton("${user["coin"]} xu", true),
                         SizedBox(width: 8),
                         _infomationButton("ID: ${user["id"]}", false),
                     ],

@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:viemic/utils/color.dart';
 import 'package:viemic/utils/space.dart';
 
 import '../../../apis/general.dart';
 
 class Chair extends StatefulWidget {
     final int uid;
+    final Map<String, dynamic> userObj;
 
     const Chair({
         super.key,
-        required this.uid
+        required this.uid,
+        required this.userObj
     });
 
     @override
@@ -55,11 +58,36 @@ class _ChairState extends State<Chair> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: user?.containsKey("avatar") ?? false
-                            ? Image.network(user!["avatar"], width: 50)
-                            : Icon(Icons.person, size: 24),
+                    Stack(
+                        alignment: Alignment.center,
+                        children: [
+                            for (int i = 2; i >= 0; i--)
+                                AnimatedContainer(
+                                    duration: Duration(milliseconds: 300),
+                                    width: 50 + ((widget.userObj["volume"] as num?)?.toDouble() ?? 0)/50 * (i + 1) * 5,
+                                    height: 50 + (((widget.userObj["volume"] as num?)?.toDouble() ?? 0)/50 * (i + 1) * 5),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: BLUE_COLOR.withOpacity(0.2 - (i * 0.05)),
+                                    ),
+                                ),
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: user?.containsKey("avatar") ?? false
+                                    ? Image.network(user!["avatar"], width: 50)
+                                    : Icon(Icons.person, size: 24),
+                            ),
+                            if (widget.userObj["isMute"] == true)
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.asset(
+                                        "assets/images/icons/mic_close.png",
+                                        width: 50,
+                                        color: Colors.black.withOpacity(0.5),
+                                        colorBlendMode: BlendMode.dstATop,
+                                    ),
+                                ),
+                        ],
                     ),
                     SizedBox(height: 8),
                     Row(
@@ -80,7 +108,7 @@ class _ChairState extends State<Chair> {
                                     width: 15
                                 ),
                         ],
-                    )
+                    ),
                 ],
             ),
         );

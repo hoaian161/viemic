@@ -31,7 +31,7 @@ class Room extends StatefulWidget {
 }
 
 class _RoomState extends State<Room> {
-    final Set<int> _users = {};
+    final Map<int, Map<String, dynamic>> _users = {};
     RtcEngine? _engine;
     late IO.Socket socket;
     bool _isMicMuted = true;
@@ -78,13 +78,24 @@ class _RoomState extends State<Room> {
             }
         });
 
-        socket.onDisconnect((_) => print("Disconnected Rooms server"));
+        socket.onDisconnect((_) {
+            setState(() {
+                _isChatable = false;
+            });
+            print("Disconnected Rooms server");
+        });
 
         socket.onConnectError((error) {
+            setState(() {
+                _isChatable = false;
+            });
             print("Socket Error: $error");
         });
 
         socket.onError((error) {
+            setState(() {
+                _isChatable = false;
+            });
             print("Socket Error: $error");
         });
     }
@@ -129,16 +140,22 @@ class _RoomState extends State<Room> {
             RtcEngineEventHandler(
                 onJoinChannelSuccess: (RtcConnection connection, int elapsed) async {
                     debugPrint("Local user ${connection.localUid} joined");
-                    await _engine!.muteLocalAudioStream(_isMicMuted);
+                    await _engine!.muteLocalAudioStream(true);
                     setState(() {
-                        _users.add(uid);
+                        _users[uid] = {
+                            "isMute": true,
+                            "volume": 0,
+                        };
                     });
                 },
 
                 onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
                     debugPrint("Remote user $remoteUid joined");
                     setState(() {
-                        _users.add(remoteUid);
+                        _users[remoteUid] = {
+                            "isMute": true,
+                            "volume": 0,
+                        };
                     });
                 },
 
@@ -146,8 +163,26 @@ class _RoomState extends State<Room> {
                     debugPrint("Remote user $remoteUid left");
                     setState(() {
                         _users.remove(remoteUid);
-                        print(_users);
                     });
+                },
+
+                onUserMuteAudio: (RtcConnection connection, int remoteUid, bool muted) {
+                    debugPrint("Remote user $remoteUid mute change");
+                    setState(() {
+                        _users[remoteUid]!["isMute"] = muted;
+                    });
+                },
+
+                onAudioVolumeIndication: (RtcConnection connection, List<AudioVolumeInfo> speakers, int speakerNumber, int totalVolume) {
+                    if (speakers.isNotEmpty) {
+                        setState(() {
+                            for (var speaker in speakers) {
+                                if (_users.containsKey(speaker.uid)) {
+                                    _users[speaker.uid]!["volume"] = speaker.volume;
+                                }
+                            }
+                        });
+                    }
                 },
 
                 onError: (ErrorCodeType code, String message) async {
@@ -164,6 +199,12 @@ class _RoomState extends State<Room> {
             channelId: widget.room["id"],
             uid: uid,
             options: const ChannelMediaOptions(),
+        );
+
+        await _engine!.enableAudioVolumeIndication(
+            interval: 200,
+            smooth: 3,
+            reportVad: true,
         );
     }
 
@@ -197,6 +238,7 @@ class _RoomState extends State<Room> {
         if (_engine != null) {
             setState(() {
                 _isMicMuted = !_isMicMuted;
+                _users[uid]!["isMute"] = _isMicMuted;
             });
             await _engine!.muteLocalAudioStream(_isMicMuted);
         }
@@ -221,7 +263,15 @@ class _RoomState extends State<Room> {
                                         padding: EdgeInsets.only(bottom: 16, top: 20),
                                         child: Row(
                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: _users.map((userID) => Chair(uid: userID, key: ValueKey(userID))).toList(),
+                                            children: (){
+                                                var sortedEntries = _users.entries.toList();
+                                                sortedEntries.sort((a, b) => a.key.compareTo(b.key));
+                                                return sortedEntries.map((entry) => Chair(
+                                                    uid: entry.key,
+                                                    key: ValueKey(entry.key),
+                                                    userObj: entry.value
+                                                )).toList();
+                                            }(),
                                         ),
                                     ),
                                 ],
@@ -268,7 +318,7 @@ class _RoomState extends State<Room> {
                                             _isMicMuted
                                                 ? "assets/images/icons/mic_close.png"
                                                 : "assets/images/icons/mic_open.png",
-                                            width: 35,
+                                            width: 40,
                                         ),
                                     ),
                                     SizedBox(width: 10),
@@ -283,9 +333,10 @@ class _RoomState extends State<Room> {
                                                 children: [
                                                     Expanded(
                                                         child: TextField(
+                                                            enabled: _isChatable,
                                                             controller: _messageController,
                                                             decoration: InputDecoration(
-                                                                hintText: "Nhập tin nhắn...",
+                                                                hintText: (_isChatable ? "Nhập tin nhắn..." : "Phòng này không thể nhắn"),
                                                                 hintStyle: TextStyle(
                                                                     color: BLACK_COLOR,
                                                                     fontSize: 16,
