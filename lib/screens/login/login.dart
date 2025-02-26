@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
         return Scaffold(
             body: Stack(
                 children: [
-                    Background(),
+                    // Background(),
                     Positioned(
                         top: MediaQuery.of(context).size.height * 0.17,
                         left: 0,

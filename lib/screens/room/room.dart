@@ -295,7 +295,7 @@ class _RoomState extends State<Room> {
                                             ? Alignment.centerRight
                                             : Alignment.centerLeft,
                                         child: Container(
-                                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                             margin: EdgeInsets.symmetric(vertical: 10),
                                             decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(10),
