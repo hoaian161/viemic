@@ -64,8 +64,8 @@ class _ChairState extends State<Chair> {
                             for (int i = 2; i >= 0; i--)
                                 AnimatedContainer(
                                     duration: Duration(milliseconds: 300),
-                                    width: 50 + ((widget.userObj["volume"] as num?)?.toDouble() ?? 0)/50 * (i + 1) * 5,
-                                    height: 50 + (((widget.userObj["volume"] as num?)?.toDouble() ?? 0)/50 * (i + 1) * 5),
+                                    width: 50 + ((widget.userObj["volume"] as num?)?.toDouble() ?? 0)/80 * (i + 1) * 5,
+                                    height: 50 + (((widget.userObj["volume"] as num?)?.toDouble() ?? 0)/80 * (i + 1) * 5),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: BLUE_COLOR.withOpacity(0.2 - (i * 0.05)),

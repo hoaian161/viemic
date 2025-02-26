@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:viemic/screens/login/widgets/background.dart';
@@ -48,6 +49,7 @@ class _LoginState extends State<Login> {
         Map<String, dynamic> getVersion = await server("getVersion", "");
         PackageInfo packageInfo = await PackageInfo.fromPlatform();
         PermissionStatus microphoneGrant = await Permission.microphone.request();
+        PermissionStatus locationGrant = await Permission.location.request();
 
         if (getVersion.isEmpty) {
             modal(context, "Không thể kết nối với máy chủ", AnimationStyles.defaultStyle, 0.20);
@@ -55,14 +57,20 @@ class _LoginState extends State<Login> {
         } else if (getVersion["data"]["version"] != packageInfo.version) {
             modal(context, "Ứng dụng đã có phiên bản mới, hãy cập nhật để tiếp tục nhé", AnimationStyles.defaultStyle, 0.20);
             return;
-        }
-
-        if (!microphoneGrant.isGranted) {
+        } else if (!microphoneGrant.isGranted || !locationGrant.isGranted) {
             modal(context, "Bạn cần cấp các quyền cần thiết để tiếp tục", AnimationStyles.defaultStyle, 0.20);
             return;
         }
 
-        Map<String, dynamic> authRequest = await server("auth", "user=${user}");
+        setState(() {
+            isFirstLogin = false;
+        });
+
+        Position userPosition = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high
+        );
+
+        Map<String, dynamic> authRequest = await server("auth", "user=${user}&position=${userPosition.latitude},${userPosition.longitude}");
 
         if (authRequest["code"] == true) {
             Map<String, dynamic> user = authRequest["data"]["user"];
@@ -113,7 +121,6 @@ class _LoginState extends State<Login> {
                             child: BigLabel("viemic", WHITE_COLOR),
                         ),
                     ),
-                    isFirstLogin ?
                     Positioned(
                         top: MediaQuery.of(context).size.height * 0.90,
                         right: 16,
@@ -121,7 +128,8 @@ class _LoginState extends State<Login> {
                             // splashColor: Colors.transparent,
                             // highlightColor: Colors.transparent,
                             onTap: () => {
-                                signIn()
+                                if (isFirstLogin)
+                                    signIn()
                             },
                             child: Container(
                                 width: 260,
@@ -141,14 +149,13 @@ class _LoginState extends State<Login> {
                                             height: 35,
                                         ),
                                         SizedBox(width: 13),
-                                        DefaultLabel("Tiếp tục với Google", BLACK_COLOR),
+                                        DefaultLabel(isFirstLogin ? "Tiếp tục với Google" : "Đang đăng nhập ...", BLACK_COLOR),
                                         Spacer()
                                     ],
                                 ),
                             )
                         )
                     )
-                    : SizedBox(),
                 ],
             ),
         );

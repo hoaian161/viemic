@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:viemic/utils/color.dart';
 
 enum AnimationStyles { defaultStyle, custom, none }
 

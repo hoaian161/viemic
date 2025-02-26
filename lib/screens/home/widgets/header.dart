@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:viemic/utils/color.dart';
 
 import '../../../utils/internal.dart';
 
@@ -18,6 +19,7 @@ class _HeaderState extends State<Header> {
             children: [
                 CircleAvatar(
                     radius: 30,
+                    backgroundColor: FADED_2_COLOR,
                     backgroundImage: NetworkImage("${user["avatar"]}"),
                 ),
                 SizedBox(width: 16),
