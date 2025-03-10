@@ -17,6 +17,14 @@ class _NewsState extends State<News> {
                     fit: BoxFit.fitWidth,
                 ),
                 borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                    BoxShadow(
+                        color: Colors.deepPurple.withValues(alpha: 0.2),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                    ),
+                ],
             ),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

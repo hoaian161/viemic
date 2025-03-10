@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/modal.dart';
+
 class Features extends StatefulWidget {
     @override
     State<Features> createState() => _FeaturesState();
@@ -29,17 +31,38 @@ class _FeaturesState extends State<Features> {
         return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-                _featureButton(
-                    "assets/images/icons/distance.png",
-                    "Gần đây"
+                InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {
+                        modal(context, "Tính năng không khả dụng trên phiên bản thử nghiệm", AnimationStyles.defaultStyle, 0.20);
+                    },
+                    child: _featureButton(
+                        "assets/images/icons/distance.png",
+                        "Gần đây"
+                    ),
                 ),
-                _featureButton(
-                    "assets/images/icons/friends.png",
-                    "Bạn bè"
+                InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {
+                        modal(context, "Tính năng không khả dụng trên phiên bản thử nghiệm", AnimationStyles.defaultStyle, 0.20);
+                    },
+                    child: _featureButton(
+                        "assets/images/icons/friends.png",
+                        "Bạn bè"
+                    ),
                 ),
-                _featureButton(
-                    "assets/images/icons/edit.png",
-                    "Hồ sơ"
+                InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {
+                        modal(context, "Tính năng không khả dụng trên phiên bản thử nghiệm", AnimationStyles.defaultStyle, 0.20);
+                    },
+                    child: _featureButton(
+                        "assets/images/icons/edit.png",
+                        "Hồ sơ"
+                    ),
                 ),
             ],
         );

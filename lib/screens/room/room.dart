@@ -35,12 +35,13 @@ class _RoomState extends State<Room> {
     RtcEngine? _engine;
     late IO.Socket socket;
     bool _isMicMuted = true;
-    bool _isChatable = false;
+    bool _isSocketLive = false;
 
     int uid = int.parse(user["id"]);
 
     List<Map<String, String>> _messages = [];
     TextEditingController _messageController = TextEditingController();
+    ScrollController _scrollController = ScrollController();
 
     @override
     void initState() {
@@ -58,7 +59,7 @@ class _RoomState extends State<Room> {
 
         socket.onConnect((_) {
             setState(() {
-                _isChatable = true;
+                _isSocketLive = true;
             });
             print("Connected to Rooms server");
         });
@@ -74,36 +75,49 @@ class _RoomState extends State<Room> {
                             "text": data["data"]["text"].toString(),
                         });
                     });
+                    _scrollToBottom();
                 }
             }
         });
 
         socket.onReconnect((_) {
             setState(() {
-                _isChatable = true;
+                _isSocketLive = true;
             });
             print("Reconnected Rooms server");
         });
 
         socket.onDisconnect((_) {
             setState(() {
-                _isChatable = false;
+                _isSocketLive = false;
             });
             print("Disconnected Rooms server");
         });
 
         socket.onConnectError((error) {
             setState(() {
-                _isChatable = false;
+                _isSocketLive = false;
             });
             print("Socket Error: $error");
         });
 
         socket.onError((error) {
             setState(() {
-                _isChatable = false;
+                _isSocketLive = false;
             });
             print("Socket Error: $error");
+        });
+    }
+
+    void _scrollToBottom() {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (_scrollController.hasClients) {
+                _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent,
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                );
+            }
         });
     }
 
@@ -128,6 +142,7 @@ class _RoomState extends State<Room> {
         });
 
         _messageController.clear();
+        _scrollToBottom();
     }
 
     Future<void> _initAgora() async {
@@ -154,6 +169,17 @@ class _RoomState extends State<Room> {
                             "volume": 0,
                         };
                     });
+
+                    if (_isSocketLive) {
+                        socket.emit("event", {
+                            "type": "room_users_update",
+                            "data": {
+                                "id": widget.room["id"],
+                                "type": "join",
+                                "user": uid
+                            },
+                        });
+                    }
                 },
 
                 onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
@@ -164,6 +190,17 @@ class _RoomState extends State<Room> {
                             "volume": 0,
                         };
                     });
+
+                    if (_isSocketLive) {
+                        socket.emit("event", {
+                            "type": "room_users_update",
+                            "data": {
+                                "id": widget.room["id"],
+                                "type": "join",
+                                "user": remoteUid
+                            },
+                        });
+                    }
                 },
 
                 onUserOffline: (RtcConnection connection, int remoteUid, UserOfflineReasonType reason) {
@@ -171,6 +208,17 @@ class _RoomState extends State<Room> {
                     setState(() {
                         _users.remove(remoteUid);
                     });
+
+                    if (_isSocketLive) {
+                        socket.emit("event", {
+                            "type": "room_users_update",
+                            "data": {
+                                "id": widget.room["id"],
+                                "type": "quit",
+                                "user": remoteUid
+                            },
+                        });
+                    }
                 },
 
                 onUserMuteAudio: (RtcConnection connection, int remoteUid, bool muted) {
@@ -218,7 +266,18 @@ class _RoomState extends State<Room> {
 
     @override
     void dispose() {
+        if (_isSocketLive) {
+            socket.emit("event", {
+                "type": "room_users_update",
+                "data": {
+                    "id": widget.room["id"],
+                    "type": "quit",
+                    "user": uid
+                },
+            });
+        }
         _disposeAgora();
+        _scrollController.dispose();
         super.dispose();
     }
 
@@ -287,6 +346,7 @@ class _RoomState extends State<Room> {
                         ),
                         Expanded( // This will take remaining space
                             child: ListView.builder(
+                                controller: _scrollController,
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 itemCount: _messages.length,
                                 itemBuilder: (context, index) {
@@ -295,11 +355,14 @@ class _RoomState extends State<Room> {
                                             ? Alignment.centerRight
                                             : Alignment.centerLeft,
                                         child: Container(
+                                            constraints: BoxConstraints(
+                                                minWidth: 100,
+                                            ),
                                             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                             margin: EdgeInsets.symmetric(vertical: 10),
                                             decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(10),
-                                                color: FADED_2_COLOR,
+                                                color: Colors.deepOrange.withOpacity(0.05),
                                             ),
                                             child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,6 +374,7 @@ class _RoomState extends State<Room> {
                                                             fontSize: 14,
                                                         ),
                                                     ),
+                                                    SizedBox(height: 2),
                                                     Text(
                                                         _messages[index]["text"]!,
                                                         style: TextStyle(
@@ -352,10 +416,10 @@ class _RoomState extends State<Room> {
                                                 children: [
                                                     Expanded(
                                                         child: TextField(
-                                                            enabled: _isChatable,
+                                                            enabled: _isSocketLive,
                                                             controller: _messageController,
                                                             decoration: InputDecoration(
-                                                                hintText: (_isChatable ? "Nhập tin nhắn..." : "Phòng này không thể nhắn"),
+                                                                hintText: (_isSocketLive ? "Nhập tin nhắn..." : "Phòng này không thể nhắn"),
                                                                 hintStyle: TextStyle(
                                                                     color: BLACK_COLOR,
                                                                     fontSize: 16,
@@ -365,6 +429,7 @@ class _RoomState extends State<Room> {
                                                             style: TextStyle(
                                                                 color: BLACK_COLOR,
                                                             ),
+                                                            onSubmitted: (_) => _sendMessage(),
                                                         ),
                                                     ),
                                                     SizedBox(width: 10),

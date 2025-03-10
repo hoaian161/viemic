@@ -61,10 +61,28 @@ class _RoomsState extends State<Rooms> {
                     children: [
                         Row(
                             children: [
-                                CircleAvatar(
-                                    radius: 30,
-                                    backgroundColor: FADED_2_COLOR,
-                                    backgroundImage: NetworkImage(room["thumbnail"]),
+                                // CircleAvatar(
+                                //     radius: 30,
+                                //     backgroundColor: FADED_2_COLOR,
+                                //     backgroundImage: NetworkImage(room["thumbnail"]),
+                                // ),
+                                Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey.withValues(alpha: 0.2),
+                                                spreadRadius: 5,
+                                                blurRadius: 7,
+                                                offset: Offset(0, 3),
+                                            ),
+                                        ],
+                                    ),
+                                    child: CircleAvatar(
+                                        radius: 30,
+                                        backgroundColor: FADED_2_COLOR,
+                                        backgroundImage: NetworkImage(room["thumbnail"]),
+                                    ),
                                 ),
                                 SizedBox(width: 12),
                                 Column(
@@ -102,7 +120,7 @@ class _RoomsState extends State<Rooms> {
                                     ),
                                     SizedBox(width: MICRO_PADDING),
                                     Text(
-                                        "0",
+                                        room["users"],
                                         style: TextStyle(
                                             color: FADED_1_COLOR,
                                         )

@@ -1,5 +1,9 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '12.0'
+platform :ios, '12.0'
+
+permissions_path = '../.symlinks/plugins/permission_handler/ios'
+pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
+pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'

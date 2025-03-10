@@ -59,7 +59,9 @@ class _LoginState extends State<Login> {
             modal(context, "Ứng dụng đã có phiên bản mới, hãy cập nhật để tiếp tục nhé", AnimationStyles.defaultStyle, 0.20);
             return;
         } else if (!microphoneGrant.isGranted || !locationGrant.isGranted) {
-            modal(context, "Bạn cần cấp các quyền cần thiết để tiếp tục", AnimationStyles.defaultStyle, 0.20);
+            modal(context, "Bạn cần cấp quyền thu âm và vị trí để tiếp tục", AnimationStyles.defaultStyle, 0.20);
+            await Permission.microphone.request();
+            await Permission.location.request();
             return;
         }
 
@@ -121,7 +123,7 @@ class _LoginState extends State<Login> {
                     ),
                     Background(),
                     Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.18),
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.16),
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

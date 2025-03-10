@@ -18,6 +18,14 @@ class _CurrencyState extends State<Infomation> {
             decoration: BoxDecoration(
                 color: selected ? FADED_2_COLOR : Colors.transparent,
                 borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withValues(alpha: 0.2),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                    ),
+                ],
             ),
             child: Text(
                 label,

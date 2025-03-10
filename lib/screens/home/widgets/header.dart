@@ -31,10 +31,23 @@ class _HeaderState extends State<Header> {
         return Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-                CircleAvatar(
-                    radius: 30,
-                    backgroundColor: FADED_2_COLOR,
-                    backgroundImage: NetworkImage("${user["avatar"]}"),
+                Container(
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withValues(alpha: 0.2),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
+                            ),
+                        ],
+                        borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: FADED_2_COLOR,
+                        backgroundImage: NetworkImage("${user["avatar"]}"),
+                    ),
                 ),
                 SizedBox(width: 16),
                 Column(
